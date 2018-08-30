@@ -23,15 +23,15 @@
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name=".BluetoothReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter android:priority="1000">
-                <action android:name="android.bluetooth.adapter.action.DISCOVERY_FINISHED" />
-                <action android:name="android.bluetooth.device.action.FOUND" />
-            </intent-filter>
-        </receiver>
+        <!--<receiver-->
+            <!--android:name=".BluetoothReceiver"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="true">-->
+            <!--<intent-filter android:priority="1000">-->
+                <!--<action android:name="android.bluetooth.adapter.action.DISCOVERY_FINISHED" />-->
+                <!--<action android:name="android.bluetooth.device.action.FOUND" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
     </application>
 
 </manifest>
