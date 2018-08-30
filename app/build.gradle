@@ -39,6 +39,5 @@ dependencies {
 
     //
     implementation 'com.android.support:design:27.1.1'
-    implementation 'com.inuker.bluetooth:library:1.4.0'
 }
 

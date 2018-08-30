@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Bluetoothdemo</string>
-    <string name="device_name">Device: %1$s</string>
-    <string name="mac_name">Mac: %1$s</string>
-    <string name="snack_no_bt">该设备不支持蓝牙！</string>
-    <string name="menu_scan">扫描</string>
-    <string name="menu_stop">停止</string>
-    <string name="menu_auto_match">自动匹配</string>
-</resources>

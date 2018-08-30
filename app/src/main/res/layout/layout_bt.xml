@@ -7,53 +7,51 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/device"
+        android:id="@+id/tv_device"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/x8"
         android:layout_marginTop="@dimen/x8"
-        android:text="@string/device_name"
+        android:text=""
         android:textSize="@dimen/x12"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/auto_match"
+        android:id="@+id/btn_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/x8"
         android:layout_marginTop="@dimen/x8"
-        android:text="@string/menu_auto_match"
-        android:textSize="@dimen/x12"
         android:clickable="true"
-        android:onClick="automatch"
-        app:layout_constraintBaseline_toBaselineOf="@id/device"
-        app:layout_constraintEnd_toStartOf="@+id/scan"
-        app:layout_constraintLeft_toRightOf="@+id/device"
+        android:text="发送"
+        android:textSize="@dimen/x12"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_device"
+        app:layout_constraintEnd_toStartOf="@+id/btn_scan"
+        app:layout_constraintLeft_toRightOf="@+id/tv_device"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/scan"
+        android:id="@+id/btn_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/x8"
         android:layout_marginTop="@dimen/x8"
-        android:text="@string/menu_scan"
-        android:textSize="@dimen/x12"
         android:clickable="true"
-        android:onClick="scan"
-        app:layout_constraintBaseline_toBaselineOf="@id/device"
+        android:text="扫描"
+        android:textSize="@dimen/x12"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_device"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/auto_match"
+        app:layout_constraintLeft_toRightOf="@+id/btn_send"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/x8"
         android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@id/device"></ListView>
+        app:layout_constraintTop_toBottomOf="@id/tv_device"></ListView>
 
 </android.support.constraint.ConstraintLayout>
