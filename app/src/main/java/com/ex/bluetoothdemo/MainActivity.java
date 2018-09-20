@@ -25,9 +25,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Filter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -39,15 +37,13 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.security.auth.login.LoginException;
-
 public class MainActivity extends AppCompatActivity implements SafeHandler.HandlerContainer, View.OnClickListener, AdapterView.OnItemClickListener {
 
 
     /**
      * Called when the activity is first created.
      */
-    private static final String TAG = "chensy";
+    private static final String TAG = "BluetoothDemo";
     public BluetoothAdapter mBluetoothAdapter;
     private Set<BluetoothDevice> paireDevices;
     private BluetoothSocket socket = null;
@@ -98,6 +94,11 @@ public class MainActivity extends AppCompatActivity implements SafeHandler.Handl
         //注册
         filter = getIntentFilter();
         registerReceiver(receiver, filter);
+
+
+        Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+        discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 3600);
+        startActivity(discoverableIntent);
     }
 
     private void initView() {
@@ -229,10 +230,10 @@ public class MainActivity extends AppCompatActivity implements SafeHandler.Handl
                     @Override
                     public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
                         if (i == KeyEvent.KEYCODE_BACK) {
-                            Log.i("chensy", "Back down");
+                            Log.i(TAG, "Back down");
                             dialog.dismiss();
                             mBluetoothAdapter.cancelDiscovery();
-                            Log.i("chensy", "Cancel Discovery");
+                            Log.i(TAG, "Cancel Discovery");
                         }
                         return false;
                     }
@@ -253,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements SafeHandler.Handl
             mBluetoothAdapter.cancelDiscovery();
         }
         String address = list.get(i).substring(list.get(i).indexOf("~") + 1).trim();
-        Log.d("chensy", "onItemClick: " + address);
+        Log.d(TAG, "onItemClick: " + address);
         BluetoothDevice btDev = mBluetoothAdapter.getRemoteDevice(address);
         connect(btDev);
     }
@@ -275,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements SafeHandler.Handl
             BluetoothSocket tmp = null;
             try {
                 //尝试建立安全的连接
-                tmp = mmDevice.createRfcommSocketToServiceRecord(MY_UUID);
+                tmp = mmDevice.createInsecureRfcommSocketToServiceRecord(MY_UUID);
             } catch (IOException e) {
                 Log.i(TAG, "获取 BluetoothSocket失败");
                 e.printStackTrace();
@@ -406,8 +407,8 @@ public class MainActivity extends AppCompatActivity implements SafeHandler.Handl
         public AcceptThread() {
             BluetoothServerSocket tmp = null;
             try {
-                tmp = mBluetoothAdapter.listenUsingRfcommWithServiceRecord("name",
-                        MY_UUID);
+                tmp = mBluetoothAdapter.listenUsingInsecureRfcommWithServiceRecord("name",
+                        MY_UUID);  // 建立不安全连接,不需要匹配
             } catch (IOException e) {
                 e.printStackTrace();
             }
